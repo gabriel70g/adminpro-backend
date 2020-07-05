@@ -1,0 +1,16 @@
+{
+  "name": "backendserver",
+  "version": "1.0.0",
+  "description": "Servidor del curso de Angular Avanzado",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Grabriel\u001b[abriel Gomez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.21"
+  }
+}
