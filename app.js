@@ -3,10 +3,15 @@ var express = require("express");
 var mongoose = require("mongoose");
 
 const { response } = require("express");
+var bodyParser = require("body-parser");
 
 // inicializacion
-
 var app = express();
+
+// body parcer
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // conexion a la base de datos
 mongoose.connection.openUri(
@@ -17,13 +22,15 @@ mongoose.connection.openUri(
   }
 );
 
-// Rutas
-app.get("/", (req, res, next) => {
-  res.status(200).json({
-    ok: true,
-    mesanje: "Peticion Realizada correctamente",
-  });
-});
+// importar rutas
+var appRoutes = require("./routes/app");
+var usuarioRoutes = require("./routes/usuario");
+var loginRoutes = require("./routes/login");
+
+// rutas
+app.use("/usuario", usuarioRoutes);
+app.use("/login", loginRoutes);
+app.use("/", appRoutes);
 
 // escuchar peticiones
 app.listen(3000, () => {
