@@ -2,11 +2,10 @@ var express = require("express");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
-var mAutorization = require("../middlewares/auteinticacion");
 var SEED = require("../config/config").SEED;
 
 var app = express();
-var Usuario = require("../models/ususario");
+var Usuario = require("../models/usuario");
 // método de login
 app.post("/", (req, res) => {
   var body = req.body;

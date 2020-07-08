@@ -1,5 +1,3 @@
-var express = require("express");
-var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
 var SEED = require("../config/config").SEED;
@@ -8,17 +6,19 @@ var SEED = require("../config/config").SEED;
 // verificar token
 //===========================
 exports.verificaToken = function (req, res, next) {
-  var token = req.token;
+  var token = req.query.token;
 
-  jwt.verify(token, SEED, (err, decode) => {
+  jwt.verify(token, SEED, (err, decoded) => {
     if (err) {
-      return res.status(500).json({
+      return res.status(401).json({
         ok: false,
-        mesanje: "Token incorrecto",
+        mensaje: "Token incorrecto",
         errors: err,
       });
     }
-    req.usuario = decode.usuario;
+
+    req.usuario = decoded.usuario;
+
     next();
 
     // res.status(200).json({
