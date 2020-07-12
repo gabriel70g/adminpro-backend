@@ -29,9 +29,9 @@ async function verify(token) {
     nombre: payload.name,
     apellido: payload.name,
     email: payload.email,
-    img: payload.img,
+    img: payload.picture,
     google: true,
-    //payload: payload
+    payload: payload
   };
 }
 
@@ -112,7 +112,8 @@ app.post("/goolge", async (req, res) => {
           ok: true,
           usuario: usuarioDB,
           token: token,
-          id: usuarioDB._id
+          id: usuarioDB._id,
+          googleUser: googleUser
         });
       });
 

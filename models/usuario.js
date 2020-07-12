@@ -11,7 +11,7 @@ var rolesValidos = {
 
 var usuarioSchema = new Schema({
   nombre: { type: String, required: [true, "El nombre es requerido"] },
-  apellido: { type: String, required: [true, "El apellido es requerido"] },
+  apellido: { type: String, requerido: false, default: "" },
   email: {
     type: String,
     unique: true,
